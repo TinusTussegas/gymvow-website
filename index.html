@@ -1,0 +1,521 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#0E1216">
+  <title>GymVow: Stake real money on your gym goal</title>
+  <meta name="description" content="GymVow is a commitment contract for the gym: stake real money on your weekly goal, verified by time at your gym. Show up and keep every cent. Fail on the paid plan, and your stake is donated to Good Sports.">
+  <link rel="canonical" href="https://gymvow.com/">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+
+  <!-- Open Graph / social -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="GymVow">
+  <meta property="og:title" content="GymVow: Stake real money on your gym goal">
+  <meta property="og:description" content="A commitment contract for the gym: stake real money on your weekly goal. Show up and keep it. Fail on the paid plan, and it's donated to Good Sports.">
+  <meta property="og:url" content="https://gymvow.com/">
+  <meta property="og:image" content="https://gymvow.com/assets/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="GymVow. Motivation fades. Money doesn't.">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="GymVow: Stake real money on your gym goal">
+  <meta name="twitter:description" content="A commitment contract for the gym: stake real money on your weekly goal. Show up and keep it, or lose the stake.">
+  <meta name="twitter:image" content="https://gymvow.com/assets/og-image.jpg">
+  <link rel="preload" href="assets/fonts/big-shoulders-900.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/barlow-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/plex-mono-700.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/styles.css">
+
+  <!-- Structured data for search & AI engines -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://gymvow.com/#org",
+        "name": "GymVow",
+        "url": "https://gymvow.com/",
+        "description": "GymVow is an iOS commitment-contract app for the gym that lets you stake real money on your weekly workout goal, verified by location. On the paid plan, forfeited stakes are donated to the Good Sports charity.",
+        "logo": "https://gymvow.com/assets/favicon.svg"
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://gymvow.com/#website",
+        "url": "https://gymvow.com/",
+        "name": "GymVow",
+        "description": "A commitment contract for the gym: stake real money on your weekly goal.",
+        "publisher": { "@id": "https://gymvow.com/#org" },
+        "dateModified": "2026-07-14"
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What happens if I complete my vow?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Nothing. Your card is never charged. GymVow doesn't hold your stake up front, so completing a vow costs $0. Money only ever moves when you miss." }
+          },
+          {
+            "@type": "Question",
+            "name": "What does one missed session cost?",
+            "acceptedAnswer": { "@type": "Answer", "text": "It depends on your mode. Gradual: every miss forfeits 10% of your original stake, so ten misses drains it and fails the vow. Winner Takes All: the first miss forfeits everything, instantly." }
+          },
+          {
+            "@type": "Question",
+            "name": "When is my card actually charged?",
+            "acceptedAnswer": { "@type": "Answer", "text": "When a week of your vow closes with fewer check-ins than your goal. The shortfall is charged automatically, so you're never asked to confirm your own penalty." }
+          },
+          {
+            "@type": "Question",
+            "name": "Do I need a payment method on file?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Yes. An active vow requires a valid payment method. If yours is missing or invalid, you get a warning and seven days to add one. If you don't, your vow is cancelled." }
+          },
+          {
+            "@type": "Question",
+            "name": "How does GymVow know I went to the gym?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Stay at your selected gym for at least 20 minutes. GymVow verifies the session from your location. No photos, no honor system." }
+          },
+          {
+            "@type": "Question",
+            "name": "How much do I have to stake?",
+            "acceptedAnswer": { "@type": "Answer", "text": "$10 minimum, no maximum. Pick a number that would genuinely sting to lose. That sting is the product." }
+          },
+          {
+            "@type": "Question",
+            "name": "Who gets my money if I fail?",
+            "acceptedAnswer": { "@type": "Answer", "text": "It depends on your plan. On the free plan, failed stakes go to GymVow after Stripe's payment-processing fees. On the paid plan ($4.99/month), failed stakes are donated to Good Sports after Stripe's fees, and GymVow keeps nothing." }
+          },
+          {
+            "@type": "Question",
+            "name": "What's the difference between the free and paid plan?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Both plans have the full accountability mechanics. The free plan costs nothing monthly; if you fail a vow, the stake goes to GymVow. The paid plan is $4.99/month; if you fail, the stake is donated to Good Sports. Stripe's payment-processing fees are deducted either way." }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="nav" id="top">
+    <div class="container nav-inner">
+      <a class="wordmark" href="#top" aria-label="GymVow, back to top">GYM<span>VOW</span></a>
+      <nav class="nav-links" id="site-nav" aria-label="Sections">
+        <a href="#mechanics">How it works</a>
+        <a href="#science">The science</a>
+        <a href="#charity">The charity</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <div class="nav-actions">
+        <a class="btn btn-primary btn-small" href="#get">Get the app</a>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" hidden>Menu</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ============ HERO ============ -->
+    <section class="hero">
+      <div class="lamplight" aria-hidden="true"></div>
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">A commitment contract for the gym</p>
+          <h1 class="hero-title">Motivation fades.<br><span class="amber">Money doesn't.</span></h1>
+          <p class="hero-sub"><strong>GymVow is a commitment-contract app for the gym:</strong> it turns your gym goal into a vow backed by your own money. Hit your weekly sessions and every cent stays yours. Fail, and the loss is charged off your card, automatically. On the paid plan, it's donated to <strong>Good&nbsp;Sports</strong>, buying sports gear for kids who can't afford their own.</p>
+          <div class="store-row">
+            <span class="store-btn store-btn--primary">
+              <span class="store-btn-small">Coming soon on the</span>
+              <span class="store-btn-big">App Store</span>
+            </span>
+          </div>
+        </div>
+
+        <div class="hero-phone" aria-hidden="true">
+          <div class="phone">
+            <div class="phone-screen">
+              <div class="phone-lamp"></div>
+              <div class="phone-masthead">
+                <span class="phone-wordmark">GYM<em>VOW</em></span>
+                <span class="phone-slug">FRI, JUL 03</span>
+              </div>
+              <div class="phone-rule"></div>
+              <p class="phone-label">Money at stake</p>
+              <p class="phone-money">$50</p>
+              <p class="phone-week">WK 2 OF 4 · 1 TO GO</p>
+              <div class="phone-dots">
+                <span class="dot dot--fill"></span>
+                <span class="dot dot--fill"></span>
+                <span class="dot dot--fill"></span>
+                <span class="dot"></span>
+              </div>
+              <div class="phone-cta">I'm at the gym · Check in</div>
+              <div class="stamp stamp--amber phone-stamp">Checked in</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ STAT TAPE ============ -->
+    <section class="tape reveal" aria-label="Key numbers">
+      <div class="container tape-grid">
+        <div class="tape-stat">
+          <p class="tape-num">2×</p>
+          <p class="tape-label">How much more a loss hurts than a gain</p>
+        </div>
+        <div class="tape-stat">
+          <p class="tape-num">10%</p>
+          <p class="tape-label">Of your stake, gone per missed session</p>
+        </div>
+        <div class="tape-stat">
+          <p class="tape-num">$10</p>
+          <p class="tape-label">Minimum stake. No maximum.</p>
+        </div>
+        <div class="tape-stat">
+          <p class="tape-num amber">$0</p>
+          <p class="tape-label">Charged if you just show up</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ MECHANICS ============ -->
+    <section class="section" id="mechanics">
+      <div class="container">
+        <header class="section-head reveal">
+          <div class="section-meta">
+            <p class="eyebrow">The mechanics</p>
+            <p class="clause">Clause 01 / 04</p>
+          </div>
+          <h2 class="section-title">Skin in the game.</h2>
+          <hr class="rule-heavy">
+        </header>
+
+        <ol class="steps">
+          <li class="step reveal">
+            <p class="step-num">01</p>
+            <h3 class="step-title">Make the vow</h3>
+            <p class="step-text">Pick your gym, your weekly sessions, and how long the vow runs. Three a week, eight weeks. That's the promise.</p>
+          </li>
+          <li class="step reveal" data-delay="1">
+            <p class="step-num">02</p>
+            <h3 class="step-title">Stake real money</h3>
+            <p class="step-text">Choose what your word is worth: $10 minimum, no ceiling. Connect your card. Nothing is charged up front.</p>
+          </li>
+          <li class="step reveal" data-delay="2">
+            <p class="step-num">03</p>
+            <h3 class="step-title">Show up</h3>
+            <p class="step-text">Spend at least 20 minutes at your gym, verified by location. Every session you complete keeps your stake exactly where it is: yours.</p>
+          </li>
+          <li class="step reveal" data-delay="3">
+            <p class="step-num">04</p>
+            <h3 class="step-title">Miss, and it's gone</h3>
+            <p class="step-text">Fall short of your weekly goal and the loss is charged from your card, automatically. No confirmation screen. No grace period.</p>
+          </li>
+        </ol>
+
+        <div class="modes">
+          <article class="card mode reveal">
+            <p class="mode-kicker">Mode 1: Gradual</p>
+            <h3 class="mode-title">Bleed slowly.</h3>
+            <p class="mode-text">Each missed session forfeits <strong>10% of your original stake</strong>. Ten misses drains it to zero, and the vow fails.</p>
+            <p class="mode-example">$50 <span class="sep">▸</span> $45 <span class="sep">▸</span> $40 <span class="sep">▸</span> … <span class="sep">▸</span> <span class="crimson">$0</span></p>
+          </article>
+          <article class="card mode mode--danger reveal" data-delay="1">
+            <p class="mode-kicker crimson">Mode 2: Winner takes all</p>
+            <h3 class="mode-title">One miss. Game over.</h3>
+            <p class="mode-text">One missed session forfeits the <strong>entire stake</strong>, instantly. No second chances. That's the deal you signed.</p>
+            <p class="mode-example">$50 <span class="sep">▸</span> <span class="crimson">$0</span></p>
+            <div class="stamp stamp--crimson mode-stamp" aria-hidden="true">Forfeit</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SCIENCE ============ -->
+    <section class="section" id="science">
+      <div class="container">
+        <header class="section-head reveal">
+          <div class="section-meta">
+            <p class="eyebrow">The evidence</p>
+            <p class="clause">Clause 02 / 04</p>
+          </div>
+          <h2 class="section-title">This isn't a gimmick.<br>It's prospect theory.</h2>
+          <hr class="rule-heavy">
+        </header>
+
+        <div class="science-grid">
+          <div class="science-lead reveal">
+            <p>In 1979, Daniel Kahneman and Amos Tversky showed that people don't weigh gains and losses equally: losing money hurts roughly <strong>twice as much</strong> as winning the same amount feels good. Four decades of research since, a Nobel Prize among it, keeps finding the same asymmetry.</p>
+            <p>Most fitness apps push rewards at the weak side of that equation. GymVow points the strong side at your gym habit.</p>
+          </div>
+
+          <figure class="asymmetry reveal" data-delay="1">
+            <div class="bar-row">
+              <p class="bar-label">Gain $50: feels good</p>
+              <div class="bar-track"><div class="bar-fill bar-fill--gain"></div></div>
+            </div>
+            <div class="bar-row">
+              <p class="bar-label">Lose $50: hurts <strong>×2.25</strong></p>
+              <div class="bar-track"><div class="bar-fill bar-fill--loss"></div></div>
+            </div>
+            <figcaption class="bar-caption">Median loss-aversion coefficient λ ≈ 2.25 · Tversky &amp; Kahneman (1992)</figcaption>
+          </figure>
+        </div>
+
+        <div class="citations">
+          <article class="card cite reveal">
+            <p class="cite-authors">Kahneman &amp; Tversky</p>
+            <p class="cite-ref">1979 · Econometrica</p>
+            <p class="cite-text">"Prospect Theory: An Analysis of Decision under Risk" was the paper that first showed losses loom larger than gains. It helped earn the 2002 Nobel Memorial Prize in Economics.</p>
+          </article>
+          <article class="card cite reveal" data-delay="1">
+            <p class="cite-authors">Tversky &amp; Kahneman</p>
+            <p class="cite-ref">1992 · J. Risk &amp; Uncertainty</p>
+            <p class="cite-text">Put a number on the asymmetry: people weight a loss about 2.25 times as heavily as an equal gain.</p>
+          </article>
+          <article class="card cite reveal" data-delay="2">
+            <p class="cite-authors">Giné, Karlan &amp; Zinman</p>
+            <p class="cite-ref">2010 · AEJ: Applied</p>
+            <p class="cite-text">Smokers who voluntarily staked their own money on quitting were significantly more likely to pass nicotine tests, six and even twelve months later.</p>
+          </article>
+          <article class="card cite reveal" data-delay="3">
+            <p class="cite-authors">Royer, Stehr &amp; Sydnor</p>
+            <p class="cite-ref">2015 · AEJ: Applied</p>
+            <p class="cite-text">Employees who backed their gym attendance with a self-funded commitment contract kept showing up long after reward-only incentives wore off.</p>
+          </article>
+          <article class="card cite reveal" data-delay="4">
+            <p class="cite-authors">Charness &amp; Gneezy</p>
+            <p class="cite-ref">2009 · Econometrica</p>
+            <p class="cite-text">Getting people through the gym door repeatedly built habits that outlasted the incentives. Attendance stayed up after payments stopped.</p>
+          </article>
+          <article class="cite cite--closing reveal" data-delay="5">
+            <p class="cite-closing-text">A vow is pre-commitment: you bind your future self now, while you actually mean it. The card is on file. The rules run without asking. The version of you that wants to skip never gets a vote.</p>
+            <div class="stamp stamp--amber" aria-hidden="true">Locked in</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CHARITY ============ -->
+    <section class="section" id="charity">
+      <div class="container">
+        <header class="section-head reveal">
+          <div class="section-meta">
+            <p class="eyebrow">The beneficiary</p>
+            <p class="clause">Clause 03 / 04</p>
+          </div>
+          <h2 class="section-title">Your worst case is a kid's best case.</h2>
+          <hr class="rule-heavy">
+        </header>
+
+        <p class="charity-lead reveal">Where a failed stake goes depends on your plan. On the <strong>free plan</strong>, it goes to GymVow. On the <strong>paid plan ($4.99 a month)</strong>, it's donated to <strong>Good Sports</strong>, a U.S. 501(c)(3) nonprofit that gives new sports equipment, apparel, and footwear to youth programs in communities that can't afford them. Fail your vow, and you're still buying a kid their first pair of cleats.</p>
+
+        <div class="modes">
+          <article class="card mode reveal">
+            <p class="mode-kicker">Free plan: $0/month</p>
+            <h3 class="mode-title">Accountability, plain.</h3>
+            <p class="mode-text">The full mechanism, no subscription. If you fail your vow, the stake goes to <strong>GymVow</strong>, after Stripe's payment-processing fees.</p>
+          </article>
+          <article class="card mode reveal" data-delay="1">
+            <p class="mode-kicker amber">Paid plan: $4.99/month</p>
+            <h3 class="mode-title">Fail toward a good cause.</h3>
+            <p class="mode-text">If you fail your vow, the stake is donated to <strong>Good Sports</strong>. Only Stripe's payment-processing fees come out. GymVow keeps nothing.</p>
+          </article>
+        </div>
+
+        <div class="flow reveal" data-delay="1">
+          <div class="flow-node flow-node--loss">
+            <p class="flow-kicker crimson">You fail your vow</p>
+            <p class="flow-big crimson">−$50</p>
+            <p class="flow-text">Your stake, charged off your card on the paid plan.</p>
+          </div>
+          <div class="flow-link" aria-hidden="true"></div>
+          <div class="flow-node">
+            <p class="flow-kicker">Good Sports</p>
+            <p class="flow-big">Donated</p>
+            <p class="flow-text">Everything after Stripe's processing fee is passed through. GymVow keeps $0.</p>
+          </div>
+          <div class="flow-link flow-link--warm" aria-hidden="true"></div>
+          <div class="flow-node flow-node--win">
+            <p class="flow-kicker amber">The principle</p>
+            <p class="flow-big amber">Play</p>
+            <p class="flow-text">Good Sports believes no kid should be priced out of the game. Gear goes to youth programs in high-need communities, so the cost of equipment is never the reason a kid sits out.</p>
+          </div>
+        </div>
+
+        <div class="charity-bottom">
+          <div class="card ledger reveal">
+            <p class="ledger-head">The ledger, plainly</p>
+            <div class="ledger-row">
+              <span class="ledger-label">You complete your vow</span>
+              <strong class="ledger-value amber">$0 charged</strong>
+            </div>
+            <hr class="rule-hair">
+            <div class="ledger-row">
+              <span class="ledger-label">You fail on the free plan</span>
+              <strong class="ledger-value crimson">Stake → GymVow</strong>
+            </div>
+            <hr class="rule-hair">
+            <div class="ledger-row">
+              <span class="ledger-label">You fail on the paid plan</span>
+              <strong class="ledger-value crimson">Stake → Good Sports</strong>
+            </div>
+            <hr class="rule-hair">
+            <div class="ledger-row">
+              <span class="ledger-label">Stripe's processing fees</span>
+              <strong class="ledger-value">Deducted from failed stakes</strong>
+            </div>
+          </div>
+          <p class="charity-link-line reveal" data-delay="1">Either way, somebody wins. Preferably you.<br><a class="link-amber" href="https://www.goodsports.org" target="_blank" rel="noopener noreferrer">Read about Good Sports' work at goodsports.org →</a></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FAQ ============ -->
+    <section class="section" id="faq">
+      <div class="container">
+        <header class="section-head reveal">
+          <div class="section-meta">
+            <p class="eyebrow">Questions</p>
+            <p class="clause">Clause 04 / 04</p>
+          </div>
+          <h2 class="section-title">The fine print, out loud.</h2>
+          <hr class="rule-heavy">
+        </header>
+
+        <div class="faq-list reveal">
+          <details class="faq-item">
+            <summary>What happens if I complete my vow?</summary>
+            <p>Nothing. Your card is never charged. GymVow doesn't hold your stake up front, so completing a vow costs $0. Money only ever moves when you miss.</p>
+          </details>
+          <details class="faq-item">
+            <summary>What does one missed session cost?</summary>
+            <p>Depends on your mode. <strong>Gradual:</strong> every miss forfeits 10% of your original stake, so ten misses drains it and fails the vow. <strong>Winner Takes All:</strong> the first miss forfeits everything, instantly.</p>
+          </details>
+          <details class="faq-item">
+            <summary>When is my card actually charged?</summary>
+            <p>When a week of your vow closes with fewer check-ins than your goal. The shortfall is charged automatically, so you're never asked to confirm your own penalty.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Do I need a payment method on file?</summary>
+            <p>Yes. An active vow requires a valid payment method. If yours is missing or invalid, you get a warning and <strong>seven days</strong> to add one. If you don't, your vow is cancelled.</p>
+          </details>
+          <details class="faq-item">
+            <summary>How does GymVow know I went to the gym?</summary>
+            <p>Stay at your selected gym for at least <strong>20 minutes</strong>. GymVow verifies the session from your location. No photos, no honor system.</p>
+          </details>
+          <details class="faq-item">
+            <summary>How much do I have to stake?</summary>
+            <p><strong>$10 minimum, no maximum.</strong> Pick a number that would genuinely sting to lose. That sting is the product.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Who gets my money if I fail?</summary>
+            <p>Depends on your plan. <strong>Free:</strong> failed stakes go to GymVow, after Stripe's payment-processing fees. <strong>Paid ($4.99/month):</strong> failed stakes are donated to Good Sports (<a class="link-amber" href="https://www.goodsports.org" target="_blank" rel="noopener noreferrer">goodsports.org</a>) after Stripe's fees, and GymVow keeps nothing.</p>
+          </details>
+          <details class="faq-item">
+            <summary>What's the difference between the free and paid plan?</summary>
+            <p>Both have the full accountability mechanics. <strong>Free</strong> costs nothing monthly; if you fail, the stake goes to GymVow. <strong>Paid</strong> is $4.99/month; if you fail, the stake is donated to Good Sports. Stripe's processing fees are deducted either way.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FINAL REP ============ -->
+    <section class="press-track" id="final-rep" aria-label="The final rep">
+      <div class="press-pin">
+        <div class="lamplight lamplight--low" aria-hidden="true"></div>
+        <p class="eyebrow press-eyebrow">Addendum: the final rep</p>
+
+        <div class="press-stage" id="press-stage">
+          <svg class="press-svg" viewBox="0 0 320 340" role="img" aria-label="A lifter pressing a barbell overhead. Scrolling completes the rep and protects the stake.">
+            <g class="press-chip">
+              <rect x="98" y="22" width="124" height="32" rx="4"></rect>
+              <text id="press-chip-text" x="160" y="43" text-anchor="middle">$40 AT RISK</text>
+            </g>
+            <line class="press-ground" x1="92" y1="326" x2="228" y2="326"></line>
+            <g class="press-lifter">
+              <line x1="152" y1="246" x2="136" y2="322"></line>
+              <line x1="168" y1="246" x2="184" y2="322"></line>
+              <line x1="128" y1="324" x2="150" y2="324"></line>
+              <line x1="170" y1="324" x2="192" y2="324"></line>
+              <line x1="160" y1="248" x2="160" y2="180"></line>
+              <circle class="press-head" cx="160" cy="150" r="15"></circle>
+              <polyline id="press-arm-l" points="140,178 114,212 112,170"></polyline>
+              <polyline id="press-arm-r" points="180,178 206,212 208,170"></polyline>
+            </g>
+            <g class="press-barbell">
+              <path id="press-bar" d="M 44 170 Q 160 174 276 170"></path>
+              <g id="press-plate-l">
+                <rect x="38" y="138" width="13" height="64" rx="4"></rect>
+                <rect x="52" y="150" width="8" height="40" rx="3"></rect>
+              </g>
+              <g id="press-plate-r">
+                <rect x="269" y="138" width="13" height="64" rx="4"></rect>
+                <rect x="260" y="150" width="8" height="40" rx="3"></rect>
+              </g>
+            </g>
+          </svg>
+          <div class="stamp stamp--amber press-stamp" aria-hidden="true">Lockout</div>
+        </div>
+
+        <div class="press-copy">
+          <h2 class="press-title">Rep completed. <span class="amber">Stake protected.</span></h2>
+          <p class="press-sub">Imagine this feeling after every workout.</p>
+        </div>
+
+        <div class="press-foot">
+          <div class="press-meter" aria-hidden="true"><div class="press-meter-fill" id="press-meter-fill"></div></div>
+          <p class="press-hint" id="press-hint">Scroll to press</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FINAL CTA ============ -->
+    <section class="cta" id="get">
+      <div class="lamplight lamplight--low" aria-hidden="true"></div>
+      <div class="container cta-inner reveal">
+        <p class="eyebrow">Sign here</p>
+        <p class="cta-x" aria-hidden="true">X</p>
+        <hr class="cta-sigline" aria-hidden="true">
+        <h2 class="cta-title">Nothing at stake. Yet.</h2>
+        <p class="cta-sub">GymVow is coming to iOS, starting in the United States. The next vow could be yours.</p>
+        <div class="store-row store-row--center">
+          <span class="store-btn store-btn--primary">
+            <span class="store-btn-small">Coming soon on the</span>
+            <span class="store-btn-big">App Store</span>
+          </span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <a class="wordmark" href="#top">GYM<span>VOW</span></a>
+        <nav class="footer-links" aria-label="Footer">
+          <a href="#mechanics">How it works</a>
+          <a href="#science">The science</a>
+          <a href="#charity">The charity</a>
+          <a href="#faq">FAQ</a>
+          <a href="https://www.goodsports.org" target="_blank" rel="noopener noreferrer">goodsports.org</a>
+        </nav>
+      </div>
+      <hr class="rule-hair">
+      <p class="footer-fine">GymVow is a commitment device, not a bank, a betting product, or an investment. Your card is only charged when you fall short of a vow. On the paid plan ($4.99/month), failed stakes are donated to Good Sports after payment-processing fees; on the free plan, failed stakes are retained by GymVow after payment-processing fees. GymVow is not affiliated with or endorsed by Good Sports, Inc.</p>
+      <p class="footer-copy">© 2026 GymVow · Motivation fades. Money doesn't. · <span>Last updated <time datetime="2026-07">July 2026</time></span></p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

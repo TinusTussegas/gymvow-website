@@ -1,0 +1,22 @@
+# GymVow robots.txt
+# AI search crawlers — explicitly welcomed
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+# Everything else
+User-agent: *
+Allow: /
+
+Sitemap: https://gymvow.com/sitemap.xml
