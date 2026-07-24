@@ -1,2 +1,6 @@
 .claude/
 .DS_Store
+
+# Internal docs — keep local, not published
+DEPLOYMENT.md
+GEO-ANALYSIS.md
