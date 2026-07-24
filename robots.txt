@@ -19,4 +19,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://gymvow.live/sitemap.xml
+Sitemap: https://gymvow.me/sitemap.xml
