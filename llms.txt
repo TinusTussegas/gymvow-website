@@ -2,7 +2,7 @@
 > An iOS commitment-contract app for the gym. Stake real money on your weekly gym goal; keep every cent if you show up, lose the stake if you fail.
 
 ## Key pages
-- [GymVow home](https://gymvow.com/): How commitment contracts work, the behavioral-economics evidence behind them, the charity beneficiary, and FAQ.
+- [GymVow home](https://gymvow.live/): How commitment contracts work, the behavioral-economics evidence behind them, the charity beneficiary, and FAQ.
 
 ## Key facts
 - GymVow is a commitment device, not a bank, a betting product, or an investment.
