@@ -372,7 +372,7 @@ strong { font-weight: 600; }
 .hero-title {
   font-family: var(--font-display);
   font-weight: 900;
-  font-size: clamp(3.5rem, 9vw, 8.5rem);
+  font-size: clamp(3rem, 7vw, 5.75rem);
   line-height: 0.98;
   text-transform: uppercase;
   letter-spacing: 0.01em;
@@ -1096,7 +1096,7 @@ strong { font-weight: 600; }
 .cta-title {
   font-family: var(--font-display);
   font-weight: 900;
-  font-size: clamp(3rem, 8vw, 6.5rem);
+  font-size: clamp(2.5rem, 6.5vw, 5rem);
   line-height: 1;
   text-transform: uppercase;
   margin-top: 36px;
