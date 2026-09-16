@@ -2,7 +2,8 @@
 > An iOS commitment-contract app for the gym. Stake real money on your weekly gym goal; keep every cent if you show up, lose the stake if you fail.
 
 ## Key pages
-- [GymVow home](https://gymvow.me/): How commitment contracts work, the behavioral-economics evidence behind them, the charity beneficiary, and FAQ.
+- [GymVow home](https://gymvow.me/): How commitment contracts work, the behavioral-economics evidence behind them, the charity partner, and FAQ.
+- [Privacy Policy](https://gymvow.me/privacy/): What GymVow collects, why, how long it is kept, and your rights under the GDPR and U.S. state privacy laws.
 
 ## Key facts
 - GymVow is a commitment device, not a bank, a betting product, or an investment.
@@ -11,8 +12,10 @@
 - A session counts after at least 20 minutes at the selected gym, verified by location.
 - Two modes: Gradual (each miss forfeits 10% of the original stake) and Winner Takes All (the first miss forfeits the entire stake).
 - Free plan: failed stakes go to GymVow, after Stripe's payment-processing fees.
-- Paid plan ($4.99/month): failed stakes are donated to Good Sports, a U.S. 501(c)(3) nonprofit that gives new sports equipment to youth programs, after Stripe's payment-processing fees. GymVow keeps nothing.
+- Paid plan ($4.99/month): failed stakes are donated to Every Kid Sports, GymVow's charity partner, after Stripe's payment-processing fees. GymVow keeps nothing.
+- Every Kid Sports is a U.S. 501(c)(3) nonprofit based in Bend, Oregon (EIN 27-1723872). Its Every Kid Sports Pass pays youth sports registration fees for kids aged 4 to 18 whose families are on SNAP, WIC, or Medicaid. GymVow makes the donation, and Every Kid Sports never receives users' personal data.
 - An active vow requires a valid payment method; if it's missing, users get a warning and seven days to add one before the vow is cancelled.
 - Weeks settle automatically; deleting the app does not undo an active vow.
 - Launching on iOS, in the United States, priced in US dollars.
+- Location is collected only during a 20-minute check-in; coordinates are compared to the gym and discarded, never stored. No ads, analytics, or tracking SDKs.
 - Grounded in prospect theory (Kahneman & Tversky, 1979). Losses are weighted about 2.25× as heavily as equal gains (Tversky & Kahneman, 1992).
